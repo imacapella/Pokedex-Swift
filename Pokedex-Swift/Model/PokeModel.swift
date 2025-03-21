@@ -7,13 +7,39 @@
 
 import Foundation
 
-struct PokeModel{
+struct PokeResult: Codable {
+    let results: [Pokemon]
+}
+
+struct Pokemon: Codable {
+    let name: String
+    let url: String
+}
+
+// MARK: Detailed Pokemon Infos
+struct PokemonDetail: Codable {
     let id: Int
     let name: String
-    let baseExperience: Int
-    let height: Int
-    let weight: Int
-    let isDefault: Bool
-    let order: Int
+    let sprites: PokeSprites
+    let abilities: [PokeAbilities]
+}
+
+// MARK: Pokemon Images
+struct PokeSprites: Codable {
+    let frontDefault: String
+    //let other: OtherSprites?
     
+    enum CodingKeys: String, CodingKey {
+        case frontDefault = "front_default"
+    }
+}
+
+// MARK: Abilities is a list, so we should to unwrap
+struct PokeAbilities: Codable {
+    let ability: Abilities
+}
+// like this
+struct Abilities: Codable{
+    let name: String
+    let url: String
 }

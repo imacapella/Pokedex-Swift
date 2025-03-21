@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pokedex_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="G2o-Vi-Zpt">
+                                <rect key="frame" x="0.0" y="89" width="393" height="763"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="poke" rowHeight="125" id="ywj-ce-Nnj" customClass="PokemonTableViewCell" customModule="Pokedex_Swift" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="125"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ywj-ce-Nnj" id="p1G-ws-6GX">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="125"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="ibq-VP-bdC">
+                                                    <rect key="frame" x="163" y="20" width="175" height="85"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="LK0-HK-ghW">
+                                                    <rect key="frame" x="35" y="17" width="90" height="90"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="ibq-VP-bdC" secondAttribute="bottom" constant="20" id="5tz-dP-rFR"/>
+                                                <constraint firstItem="ibq-VP-bdC" firstAttribute="top" secondItem="p1G-ws-6GX" secondAttribute="top" constant="20" id="763-7Y-us6"/>
+                                                <constraint firstItem="ibq-VP-bdC" firstAttribute="leading" secondItem="p1G-ws-6GX" secondAttribute="leading" constant="20" id="GRf-Pr-ubc"/>
+                                                <constraint firstAttribute="trailing" secondItem="ibq-VP-bdC" secondAttribute="trailing" constant="20" id="Okx-ey-VjU"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="ibq-VP-bdC" id="1EK-PH-Lfc"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="G2o-Vi-Zpt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="Hor-Fo-zhL"/>
+                            <constraint firstAttribute="bottom" secondItem="G2o-Vi-Zpt" secondAttribute="bottom" id="aJw-sE-rRC"/>
+                            <constraint firstAttribute="trailing" secondItem="G2o-Vi-Zpt" secondAttribute="trailing" id="jDW-Af-hli"/>
+                            <constraint firstItem="G2o-Vi-Zpt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="z18-eA-NP3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pokemonTableView" destination="G2o-Vi-Zpt" id="ESr-9O-3aO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="101.5267175572519" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
