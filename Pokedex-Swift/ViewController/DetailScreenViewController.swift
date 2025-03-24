@@ -9,48 +9,24 @@ import Foundation
 import UIKit
 import Kingfisher
 
-class DetailScreenViewController: UIViewController {
+class DetailScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var pokemonName: UILabel!
-    @IBOutlet weak var pokemonImage: UIImageView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    var pokemon: Pokemon?
     var pokemonDetail: PokemonDetail?
+    var pokemon: Pokemon?
+    @IBOutlet weak var pokemonDetailTableView: UITableView!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = false
-        activityIndicator.stopAnimating()
-        if let pokemon = pokemon, let detail = pokemonDetail {
-            pokemonName.text = pokemon.name
-            if let imageUrl = URL(string: detail.sprites.frontDefault) {
-                self.pokemonImage.kf.setImage(with: imageUrl)
-            }
-            pokemonName.isHidden = false
-            pokemonImage.isHidden = false
-            
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let pokemon = pokemon, let detail = pokemonDetail {
-            pokemonName.isHidden = false
-            pokemonImage.isHidden = false
-            print("Detay Sayfasına Gelen Pokémon:", pokemon.name)
-            
-        } else {
-            print("DetailScreenViewController içinde veri boş")
-            viewWillAppear(true)
-        }
     }
     
-    func updateUI() {
-        pokemonName.isHidden = false
-        pokemonImage.isHidden = false
-        activityIndicator.stopAnimating()
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
 }
 
