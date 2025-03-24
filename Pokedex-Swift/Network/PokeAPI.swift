@@ -8,8 +8,7 @@
 import Foundation
 
 class PokeAPIManager {
-    private let resultsUrl = "https://pokeapi.co/api/v2/pokemon?limit=20"
-    
+    private let resultsUrl = "https://pokeapi.co/api/v2/pokemon?limit=24"
     // Pokémon verileri
     var pokemons: [Pokemon] = []
     
@@ -17,14 +16,19 @@ class PokeAPIManager {
     var pokemonDetails: [PokemonDetail] = []
     
     // Pokémonları çekmek için fonksiyon
-    func fetchPokemons() async throws {
-        guard let url = URL(string: resultsUrl) else { return }
+    func fetchPokemons(offset: Int, limit: Int) async throws {
+        let urlString = "https://pokeapi.co/api/v2/pokemon"
+        var components = URLComponents(string: urlString)!
+        components.queryItems = [
+            URLQueryItem(name: "offset", value: "\(offset)"),
+            URLQueryItem(name: "limit", value: "\(limit)")
+        ]
+        guard let url = components.url else { return }
         
         //URLSession
         let (data, _) = try await URLSession.shared.data(from: url)
         let response = try JSONDecoder().decode(PokeResult.self, from: data)
-        
-        self.pokemons = response.results
+        self.pokemons = response.results 
     }
     
     // Pokemon Details

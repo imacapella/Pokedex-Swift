@@ -6,14 +6,16 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PokemonTableViewCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var img: UIImageView!
     
-    func configure(pokemon: Pokemon) {
-        label.text = pokemon.name
+    func configureLabel(pokemon: Pokemon) {
+        label.text = pokemon.name.localizedUppercase
     }
-    
-    
+    func configureImage(detail: PokemonDetail) {
+        self.img.kf.setImage(with: URL(string: detail.sprites.frontDefault)!)
+    }
 }
