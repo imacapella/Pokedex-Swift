@@ -13,8 +13,10 @@ class PokemonTableViewCell: UITableViewCell {
     @IBOutlet weak var img: UIImageView!
     
     func configureLabel(pokemon: Pokemon) {
-        label.text = pokemon.name.localizedUppercase
+        label.text = pokemon.name.capitalized
+        label.font = UIFont.boldSystemFont(ofSize: 16.0)
     }
+  
     func configureImage(detail: PokemonDetail) {
         self.img.kf.setImage(with: URL(string: detail.sprites.frontDefault)!)
     }

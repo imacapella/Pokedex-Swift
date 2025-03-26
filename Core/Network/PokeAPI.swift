@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PokeAPIManager {
+class PokemonAPI {
     private let resultsUrl = "https://pokeapi.co/api/v2/pokemon?limit=24"
     // Pokémon verileri
     var pokemons: [Pokemon] = []
@@ -27,7 +27,7 @@ class PokeAPIManager {
         
         //URLSession
         let (data, _) = try await URLSession.shared.data(from: url)
-        let response = try JSONDecoder().decode(PokeResult.self, from: data)
+        let response = try JSONDecoder().decode(Results.self, from: data)
         self.pokemons = response.results 
     }
     
@@ -42,6 +42,16 @@ class PokeAPIManager {
         
         return pokemonDetail
     }
+  
+  func getAllInformations() async throws -> [PokemonDetail] {
+    var allPokemonDetails: [PokemonDetail] = []
+    for pokemon in pokemons {
+      let detail = try await fetchPokemonDetails(url: pokemon.url)
+      allPokemonDetails.append(detail)
+    }
+    return allPokemonDetails
+  }
+  
 }
 
 

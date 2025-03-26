@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PokeResult: Codable {
+struct Results: Codable {
     let results: [Pokemon]
 }
 
@@ -20,12 +20,12 @@ struct Pokemon: Codable {
 struct PokemonDetail: Codable {
     let id: Int
     let name: String
-    let sprites: PokeSprites
-    let abilities: [PokeAbilities]
+    let sprites: PokemonImages
+    let abilities: [PokemonAbilities]
 }
 
 // MARK: Pokemon Images
-struct PokeSprites: Codable {
+struct PokemonImages: Codable {
     let frontDefault: String
     //let other: OtherSprites?
     
@@ -35,7 +35,7 @@ struct PokeSprites: Codable {
 }
 
 // MARK: Abilities is a list, so we should to unwrap
-struct PokeAbilities: Codable {
+struct PokemonAbilities: Codable {
     let ability: Abilities
 }
 // like this
