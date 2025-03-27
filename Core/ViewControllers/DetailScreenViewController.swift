@@ -14,7 +14,7 @@ enum PokemonDetailTableViewCellType: CaseIterable {
 final class DetailScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   @IBOutlet weak var pokemonDetailTableView: UITableView!
   
-  var pokemonDetails: Any = ["a", 2]
+  var pokemonDetails: Any = []
   var pokemonDetail: PokemonDetail?
   var pokemon: Pokemon?
   
