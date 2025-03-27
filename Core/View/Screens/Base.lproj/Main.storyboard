@@ -70,36 +70,6 @@
             </objects>
             <point key="canvasLocation" x="1028.2442748091603" y="3.5211267605633805"/>
         </scene>
-        <!--Detail Screen View Controller-->
-        <scene sceneID="Jvd-5T-C3b">
-            <objects>
-                <viewController storyboardIdentifier="detailScreen" id="eMd-kp-6cI" customClass="DetailScreenViewController" customModule="Pokedex_Swift" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7Hl-w2-rma">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xJm-5E-hhn">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="bps-uL-Xcv"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="xJm-5E-hhn" firstAttribute="trailing" secondItem="bps-uL-Xcv" secondAttribute="trailing" id="7UZ-TP-wup"/>
-                            <constraint firstAttribute="bottom" secondItem="xJm-5E-hhn" secondAttribute="bottom" id="PGU-DY-chP"/>
-                            <constraint firstItem="xJm-5E-hhn" firstAttribute="top" secondItem="7Hl-w2-rma" secondAttribute="top" id="pvM-hI-lyd"/>
-                            <constraint firstItem="xJm-5E-hhn" firstAttribute="leading" secondItem="bps-uL-Xcv" secondAttribute="leading" id="yL8-C0-YK8"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="MxZ-CS-hU4"/>
-                    <connections>
-                        <outlet property="pokemonDetailTableView" destination="xJm-5E-hhn" id="RZT-9j-xvt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gWA-Xo-FAX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1717" y="4"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="vvN-4o-juV">
             <objects>

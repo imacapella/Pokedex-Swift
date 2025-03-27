@@ -6,44 +6,61 @@ import Foundation
 import UIKit
 import Kingfisher
 
-enum PokemonDetailTableViewCellType: CaseIterable {
-  case imageCell
-  case abilitiesCell
-}
-
 final class DetailScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+  
   @IBOutlet weak var pokemonDetailTableView: UITableView!
   
   var pokemonDetails: Any = []
   var pokemonDetail: PokemonDetail?
   var pokemon: Pokemon?
   
-  var types: [PokemonDetailTableViewCellType] = PokemonDetailTableViewCellType.allCases
+  private let imageCellNib = ImageDetailCell.nib()
+  private let abilitiesCellNib = AbilitiesCell.nib()
+  
+  private var cellType = CellTypes.allCases
+  private var expandableCellState = ExpandableCellState.allCases
+  private var isExpanded: Bool = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    pokemonDetailTableView.dataSource = self
-    pokemonDetailTableView.delegate = self
-    pokemonDetailTableView.register(ImageDetailCell.nib(), forCellReuseIdentifier: ImageDetailCell.identifier)
+    pokemonDetailTableView.dataSource = self //Storyboard kullanarak ver.
+    pokemonDetailTableView.delegate = self   //Storyboard kullanarak ver.
+    pokemonDetailTableView.register(imageCellNib, forCellReuseIdentifier: ImageDetailCell.identifier)
+    pokemonDetailTableView.register(abilitiesCellNib, forCellReuseIdentifier: AbilitiesCell.identifier)
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return types.count
+    return 2
   }
   
+  
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    if indexPath.row == 0 {
-      let imageCell = tableView.dequeueReusableCell(withIdentifier: ImageDetailCell.identifier, for: indexPath) as! ImageDetailCell
+    let type = cellType[indexPath.section]
+    
+    switch type {
+    case .imageCell:
+      let cell = tableView.dequeueReusableCell(withIdentifier: ImageDetailCell.identifier, for: indexPath) as! ImageDetailCell
+      cell.configureImageDetail(detail: pokemonDetail!)
       
-      if let detail = pokemonDetail {
-        imageCell.configureImageDetail(detail: detail)
-      }
+      return cell
+    case .abilitiesCell:
+      let cell = tableView.dequeueReusableCell(withIdentifier: AbilitiesCell.identifier, for: indexPath) as! AbilitiesCell
+      //cell.configureAbilities(abilities: pokemonDetail!.abilities, isExpanded: currentState.cellState == .expanded)
       
-      return imageCell
-    } else {
-      
-      return UITableViewCell()
+      return cell
     }
   }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let type = cellType[indexPath.section]
+    let state = expandableCellState[indexPath.section]
+    
+    
+  }
+
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return 30 }
 }
+
+

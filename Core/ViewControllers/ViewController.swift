@@ -5,11 +5,11 @@
 import UIKit
 import Kingfisher
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController {
   
   @IBOutlet weak var pokemonTableView: UITableView!
   private var isFetching: Bool = false
-  var pokemonService = PokemonAPI()                                   // PokemonAPI Object
+  var pokemonAPI = PokemonAPI()                                   // PokemonAPI Object
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -20,14 +20,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
   }
   
-  //Bütün Pokemonları almak için kullandığımız fonksiyon
+  //MARK: - API Calls
+  //Get All Pokemons
   func fetchPokemons() {
     Task {
       do {
-        let fetchedPokemons = try await pokemonService.fetchPokemons(offset: 0, limit: 21)
+        let fetchedPokemons = try await pokemonAPI.fetchPokemons(offset: 0, limit: 21)
         DataManager.shared.pokemons = fetchedPokemons
         for pokemon in fetchedPokemons {
-          let detail = try await pokemonService.fetchPokemonDetails(url: pokemon.url)
+          let detail = try await pokemonAPI.fetchPokemonDetails(url: pokemon.url)
           DataManager.shared.pokemonDetails[pokemon.name] = detail
         }
         DispatchQueue.main.async {                                    // Reload Table View
@@ -39,17 +40,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
   }
   
+  //Get More Pokemon for Pagination
   func loadMorePokemon() {
     guard !isFetching else { return }
     isFetching = true
-    
     Task {
       do {
-        let newPokemons = try await pokemonService.loadMorePokemon()
+        let newPokemons = try await pokemonAPI.loadMorePokemon()
         DataManager.shared.pokemons += newPokemons
         
         for pokemon in newPokemons {                                                    // Get New Details
-          let detail = try await pokemonService.fetchPokemonDetails(url: pokemon.url)   // Get New Details
+          let detail = try await pokemonAPI.fetchPokemonDetails(url: pokemon.url)   // Get New Details
           DataManager.shared.pokemonDetails[pokemon.name] = detail                      // Get New Details
         }
         
@@ -63,7 +64,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       }
     }
   }
-  
+}
+
+//MARK: - UITableViewDelegate, UITableViewDataSource Extensions
+extension ViewController : UITableViewDelegate, UITableViewDataSource {
   // How many cell in the TableView
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return DataManager.shared.pokemons.count
@@ -82,15 +86,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     return cell
   }
   
-  //Cell selected.
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    print("Seçilen Pokémon:", DataManager.shared.pokemons[indexPath.row].name) // Test için ekle
-    let detailScreen = self.storyboard?.instantiateViewController(withIdentifier: "detailScreen") as! DetailScreenViewController
-    detailScreen.pokemon = DataManager.shared.pokemons[indexPath.row]
-    detailScreen.pokemonDetail = DataManager.shared.pokemonDetails[DataManager.shared.pokemons[indexPath.row].name]
-    detailScreen.title = DataManager.shared.pokemons[indexPath.row].name.capitalized
-    self.navigationController?.pushViewController(detailScreen, animated: true)
+      print("Seçilen Pokémon:", DataManager.shared.pokemons[indexPath.row].name)
+
+      // Yeni storyboard'u elle yükle
+      let detailStoryboard = UIStoryboard(name: "DetailScreen", bundle: nil)
+
+      // "detailScreen" kimliğine sahip View Controller'ı bu storyboard'dan çek
+      let detailScreenVC = detailStoryboard.instantiateViewController(
+          withIdentifier: "detailScreen"
+      ) as! DetailScreenViewController
+
+      // Verileri aktar
+      detailScreenVC.pokemon = DataManager.shared.pokemons[indexPath.row]
+      detailScreenVC.pokemonDetail = DataManager.shared.pokemonDetails[DataManager.shared.pokemons[indexPath.row].name]
+      detailScreenVC.title = DataManager.shared.pokemons[indexPath.row].name.capitalized
+
+      // Navigation Controller varsa push et
+      self.navigationController?.pushViewController(detailScreenVC, animated: true)
   }
+
   
   //Created triggerIndex for understanding which cell displayed latest. If condition conforms then loadMorePokemon works.
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

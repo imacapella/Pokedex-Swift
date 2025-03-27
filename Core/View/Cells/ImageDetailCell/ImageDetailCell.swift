@@ -20,5 +20,7 @@ class ImageDetailCell: UITableViewCell {
   
   func configureImageDetail(detail: PokemonDetail) {
     self.imageDetail.kf.setImage(with: URL(string: detail.sprites.frontDefault)!)
+    self.imageDetail.frame.size.width = 400
+    self.imageDetail.frame.size.height = 400
   }
 }
