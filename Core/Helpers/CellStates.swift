@@ -5,7 +5,6 @@
 import Foundation
 
 //MARK: - Helpers
-
 enum CellTypes: CaseIterable {
   case imageCell
   case abilitiesCell

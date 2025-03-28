@@ -10,9 +10,8 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
   
   @IBOutlet weak var pokemonDetailTableView: UITableView!
   
-  var pokemonDetails: Any = []
-  var pokemonDetail: PokemonDetail?
   var pokemon: Pokemon?
+  var pokemonDetail: PokemonDetail?
   
   private let imageCellNib = ImageDetailCell.nib()
   private let abilitiesCellNib = AbilitiesCell.nib()
@@ -28,26 +27,31 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
     pokemonDetailTableView.delegate = self   //Storyboard kullanarak ver.
     pokemonDetailTableView.register(imageCellNib, forCellReuseIdentifier: ImageDetailCell.identifier)
     pokemonDetailTableView.register(abilitiesCellNib, forCellReuseIdentifier: AbilitiesCell.identifier)
+    pokemonDetailTableView.estimatedRowHeight = 100
+    pokemonDetailTableView.rowHeight = UITableView.automaticDimension
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 2
+    return 1
   }
   
-  
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return CellTypes.allCases.count
+  }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let type = cellType[indexPath.section]
+    guard let pokemonDetail = pokemonDetail else { return UITableViewCell() }
     
     switch type {
     case .imageCell:
       let cell = tableView.dequeueReusableCell(withIdentifier: ImageDetailCell.identifier, for: indexPath) as! ImageDetailCell
-      cell.configureImageDetail(detail: pokemonDetail!)
+      cell.configureImageDetail(detail: pokemonDetail)
       
       return cell
     case .abilitiesCell:
       let cell = tableView.dequeueReusableCell(withIdentifier: AbilitiesCell.identifier, for: indexPath) as! AbilitiesCell
-      //cell.configureAbilities(abilities: pokemonDetail!.abilities, isExpanded: currentState.cellState == .expanded)
+      cell.configure(pokemonDetail.abilities, isExpanded)
       
       return cell
     }
@@ -55,12 +59,22 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let type = cellType[indexPath.section]
-    let state = expandableCellState[indexPath.section]
     
-    
+    if type == .abilitiesCell {
+      isExpanded.toggle()
+      tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
+    }
   }
-
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return 30 }
+  
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    let type = cellType[indexPath.section]
+    
+    if type == .abilitiesCell && !isExpanded {
+      return 70
+    } else {
+      return 150
+    }
+  }
 }
 
 
