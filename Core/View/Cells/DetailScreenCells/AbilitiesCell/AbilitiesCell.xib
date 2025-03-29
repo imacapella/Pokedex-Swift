@@ -22,29 +22,13 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WLY-9q-ByL">
-                        <rect key="frame" x="36" y="297" width="450" height="108"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7E-5A-tUV">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U72-qT-s8t">
-                                <rect key="frame" x="0.0" y="36" width="450" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xMq-fY-goG">
-                                <rect key="frame" x="0.0" y="72" width="450" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
+                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WLY-9q-ByL">
+                        <rect key="frame" x="36" y="53" width="450" height="128"/>
                     </stackView>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IMi-Ne-SJz">
+                        <rect key="frame" x="36" y="189" width="450" height="128"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </tableView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="tMO-yc-WiI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="038-6k-Awn"/>
@@ -56,9 +40,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="ability1" destination="J7E-5A-tUV" id="QfA-iV-yFb"/>
-                <outlet property="ability2" destination="U72-qT-s8t" id="oOf-91-f9N"/>
-                <outlet property="ability3" destination="xMq-fY-goG" id="86d-d4-N1q"/>
+                <outlet property="abilitiesTableView" destination="IMi-Ne-SJz" id="FW7-ia-57J"/>
                 <outlet property="expandableStackView" destination="WLY-9q-ByL" id="3Fz-vP-y05"/>
                 <outlet property="titleLabel" destination="tMO-yc-WiI" id="HlE-dK-rll"/>
             </connections>

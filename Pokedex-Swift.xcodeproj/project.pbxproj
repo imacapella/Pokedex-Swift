@@ -89,9 +89,8 @@
 		6122F2E62D95C1FC007700FB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				6122F2D62D944C70007700FB /* AbilitiesCell */,
-				61CF52602D944746005B54BE /* ImageDetailCell */,
-				61CF523F2D943F5C005B54BE /* PokemonListCell */,
+				61CBB35A2D9887B0000CCE85 /* DetailScreenCells */,
+				61CBB35B2D9887BC000CCE85 /* MainScreenCells */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -119,6 +118,31 @@
 				617A3ABF2D8C04D800C5FD6A /* Pokedex-Swift.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		61CBB35A2D9887B0000CCE85 /* DetailScreenCells */ = {
+			isa = PBXGroup;
+			children = (
+				61CBB35C2D98882D000CCE85 /* OtherImagesCell */,
+				6122F2D62D944C70007700FB /* AbilitiesCell */,
+				61CF52602D944746005B54BE /* ImageDetailCell */,
+			);
+			path = DetailScreenCells;
+			sourceTree = "<group>";
+		};
+		61CBB35B2D9887BC000CCE85 /* MainScreenCells */ = {
+			isa = PBXGroup;
+			children = (
+				61CF523F2D943F5C005B54BE /* PokemonListCell */,
+			);
+			path = MainScreenCells;
+			sourceTree = "<group>";
+		};
+		61CBB35C2D98882D000CCE85 /* OtherImagesCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = OtherImagesCell;
 			sourceTree = "<group>";
 		};
 		61CF52112D943501005B54BE /* Core */ = {

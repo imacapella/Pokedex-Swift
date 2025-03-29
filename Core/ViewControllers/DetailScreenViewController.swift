@@ -69,10 +69,16 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     let type = cellType[indexPath.section]
     
-    if type == .abilitiesCell && !isExpanded {
-      return 70
+    if type == .abilitiesCell {
+      if isExpanded {
+        // İç TableView'ın toplam yüksekliği + Diğer UI öğeleri
+        let abilityCount = pokemonDetail?.abilities.count ?? 0
+        return 70 + CGFloat(abilityCount * 30) // 70 = Başlık yüksekliği, 30 = Her hücre
+      } else {
+        return 70 // Daraltılmış hal
+      }
     } else {
-      return 150
+      return UITableView.automaticDimension
     }
   }
 }
