@@ -8,6 +8,7 @@ import Foundation
 enum CellTypes: CaseIterable {
   case imageCell
   case abilitiesCell
+  case spritesCell
 }
 
 enum ExpandableCellState: CaseIterable {

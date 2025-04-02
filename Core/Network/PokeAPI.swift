@@ -46,4 +46,16 @@ class PokemonAPI {
     
     return newPokemons
   }
+  
+  func getPokemonSprites(url: String) async throws -> Sprites {
+    guard let url = URL(string:  url) else {
+      throw NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])
+    }
+    
+    let (data, _) = try await URLSession.shared.data(from: url)
+    let pokemonImages = try JSONDecoder().decode(Sprites.self, from: data)
+    
+    print(pokemonImages)
+    return pokemonImages
+  }
 }

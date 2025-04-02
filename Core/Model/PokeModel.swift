@@ -20,17 +20,38 @@ struct Pokemon: Codable {
 struct PokemonDetail: Codable {
   let id: Int
   let name: String
-  let sprites: PokemonImages
+  let sprites: Sprites
   let abilities: [PokemonAbilities]
 }
 
 // MARK: Pokemon Images
-struct PokemonImages: Codable {
+struct Sprites: Codable, Hashable {
   let frontDefault: String
+  let backDefault: String
+  let backFemale: String?
+  let backShiny: String
+  let backShinyFemale: String?
+  let frontFemale: String?
+  let frontShiny: String
   //let other: OtherSprites?
   
   enum CodingKeys: String, CodingKey {
     case frontDefault = "front_default"
+    case backDefault = "back_default"
+    case backFemale = "back_female"
+    case backShiny = "back_shiny"
+    case backShinyFemale = "back_shiny_female"
+    case frontFemale = "front_female"
+    case frontShiny = "front_shiny"
+  }
+  init(frontDefault: String, backDefault: String, backFemale: String?, backShiny: String, backShinyFemale: String?, frontFemale: String?, frontShiny: String) {
+    self.frontDefault = frontDefault
+    self.backDefault = backDefault
+    self.backFemale = backFemale
+    self.backShiny = backShiny
+    self.backShinyFemale = backShinyFemale
+    self.frontFemale = frontFemale
+    self.frontShiny = frontShiny
   }
 }
 

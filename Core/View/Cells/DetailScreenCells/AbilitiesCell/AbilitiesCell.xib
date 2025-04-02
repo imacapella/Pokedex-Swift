@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,46 +17,37 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abilities" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMO-yc-WiI">
-                        <rect key="frame" x="30" y="20.000000000000004" width="432" height="50.333333333333343"/>
+                        <rect key="frame" x="15" y="15" width="457" height="48"/>
                         <fontDescription key="fontDescription" type="system" pointSize="40"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ZMP-sz-W3W">
-                        <rect key="frame" x="10" y="70.333333333333343" width="502" height="357.66666666666663"/>
-                    </tableView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="F7E-LH-j4n">
-                        <rect key="frame" x="482" y="31.333333333333329" width="20" height="18"/>
-                        <color key="tintColor" systemColor="labelColor"/>
-                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WLY-9q-ByL">
+                        <rect key="frame" x="15" y="80" width="492" height="333"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xlE-2v-Xwp">
+                                <rect key="frame" x="0.0" y="0.0" width="492" height="333"/>
+                            </tableView>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="tMO-yc-WiI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="BeA-Ue-pUi"/>
-                    <constraint firstAttribute="trailing" secondItem="ZMP-sz-W3W" secondAttribute="trailing" constant="10" id="DJU-EW-WVS"/>
-                    <constraint firstAttribute="trailing" secondItem="F7E-LH-j4n" secondAttribute="trailing" constant="20" id="O20-9X-MT3"/>
-                    <constraint firstItem="ZMP-sz-W3W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="P0Y-Qx-NId"/>
-                    <constraint firstItem="ZMP-sz-W3W" firstAttribute="top" secondItem="F7E-LH-j4n" secondAttribute="bottom" constant="20" id="SPL-5x-BqE"/>
-                    <constraint firstItem="ZMP-sz-W3W" firstAttribute="top" secondItem="tMO-yc-WiI" secondAttribute="bottom" id="Ug5-6W-AIX"/>
-                    <constraint firstAttribute="trailing" secondItem="tMO-yc-WiI" secondAttribute="trailing" constant="60" id="iBn-Bk-AYM"/>
-                    <constraint firstItem="tMO-yc-WiI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="kI8-bt-K6v"/>
-                    <constraint firstItem="F7E-LH-j4n" firstAttribute="leading" secondItem="tMO-yc-WiI" secondAttribute="trailing" constant="20" id="qdE-Kn-oak"/>
-                    <constraint firstAttribute="bottom" secondItem="ZMP-sz-W3W" secondAttribute="bottom" id="ueh-UP-5SF"/>
-                    <constraint firstItem="F7E-LH-j4n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="v0V-49-aDW"/>
+                    <constraint firstItem="WLY-9q-ByL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="1es-mn-J2C"/>
+                    <constraint firstItem="WLY-9q-ByL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="80" id="Qrh-ji-4EJ"/>
+                    <constraint firstItem="tMO-yc-WiI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="X4M-37-jMb"/>
+                    <constraint firstItem="tMO-yc-WiI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="a7g-EU-hc7"/>
+                    <constraint firstAttribute="trailing" secondItem="tMO-yc-WiI" secondAttribute="trailing" constant="50" id="avz-dk-F0y"/>
+                    <constraint firstAttribute="trailing" secondItem="WLY-9q-ByL" secondAttribute="trailing" constant="15" id="jIg-zy-XoA"/>
+                    <constraint firstAttribute="bottom" secondItem="WLY-9q-ByL" secondAttribute="bottom" constant="15" id="lWY-to-vm7"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="abilitiesTableView" destination="ZMP-sz-W3W" id="550-Uq-fib"/>
-                <outlet property="arrowImageView" destination="F7E-LH-j4n" id="XDj-3w-opJ"/>
+                <outlet property="abilitiesTableView" destination="xlE-2v-Xwp" id="cvb-qV-qQp"/>
+                <outlet property="expandableStackView" destination="WLY-9q-ByL" id="3Fz-vP-y05"/>
                 <outlet property="titleLabel" destination="tMO-yc-WiI" id="HlE-dK-rll"/>
             </connections>
             <point key="canvasLocation" x="271.75572519083971" y="154.92957746478874"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="arrow.down" catalog="system" width="118" height="128"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

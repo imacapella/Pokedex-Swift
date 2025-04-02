@@ -12,21 +12,24 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
   
   var pokemon: Pokemon?
   var pokemonDetail: PokemonDetail?
+  var spritesURL: [URL?] = []
   
   private let imageCellNib = ImageDetailCell.nib()
   private let abilitiesCellNib = AbilitiesCell.nib()
+  private let spritesCellNib = SpritesCell.nib()
   
   private var cellType = CellTypes.allCases
   private var expandableCellState = ExpandableCellState.allCases
-  private var isExpanded: Bool = false
+  private var isAbilitiesCellExpanded: Bool = false
+  private var isSpritesCellExpanded: Bool = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     pokemonDetailTableView.dataSource = self //Storyboard kullanarak ver.
     pokemonDetailTableView.delegate = self   //Storyboard kullanarak ver.
     pokemonDetailTableView.register(imageCellNib, forCellReuseIdentifier: ImageDetailCell.identifier)
     pokemonDetailTableView.register(abilitiesCellNib, forCellReuseIdentifier: AbilitiesCell.identifier)
+    pokemonDetailTableView.register(spritesCellNib, forCellReuseIdentifier: SpritesCell.identifier)
     pokemonDetailTableView.estimatedRowHeight = 100
     pokemonDetailTableView.rowHeight = UITableView.automaticDimension
   }
@@ -51,8 +54,11 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
       return cell
     case .abilitiesCell:
       let cell = tableView.dequeueReusableCell(withIdentifier: AbilitiesCell.identifier, for: indexPath) as! AbilitiesCell
-      cell.configure(pokemonDetail.abilities, isExpanded)
+      cell.configure(pokemonDetail.abilities, isAbilitiesCellExpanded)
       
+      return cell
+    case .spritesCell:
+      let cell = tableView.dequeueReusableCell(withIdentifier: SpritesCell.identifier, for: indexPath) as! SpritesCell
       return cell
     }
   }
@@ -61,7 +67,12 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
     let type = cellType[indexPath.section]
     
     if type == .abilitiesCell {
-      isExpanded.toggle()
+      isAbilitiesCellExpanded.toggle()
+      tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
+    }
+    
+    if type == .spritesCell {
+      isSpritesCellExpanded.toggle()
       tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
     }
   }
@@ -69,16 +80,22 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     let type = cellType[indexPath.section]
     
-    if type == .abilitiesCell {
-      if isExpanded {
-        // İç TableView'ın toplam yüksekliği + Diğer UI öğeleri
+    switch type {
+    case .abilitiesCell:
+      if isAbilitiesCellExpanded == true {
         let abilityCount = pokemonDetail?.abilities.count ?? 0
-        return 70 + CGFloat(abilityCount * 30) // 70 = Başlık yüksekliği, 30 = Her hücre
-      } else {
-        return 70 // Daraltılmış hal
-      }
-    } else {
-      return UITableView.automaticDimension
+        
+        return 100 + CGFloat(abilityCount * 30) // 70 = Başlık yüksekliği, 30 = Her hücre
+      } else { return 70 }
+      
+    case .spritesCell:
+      if isSpritesCellExpanded == true {
+        
+        return 200
+      } else { return 70 }
+      
+    case .imageCell:
+      return 300
     }
   }
 }

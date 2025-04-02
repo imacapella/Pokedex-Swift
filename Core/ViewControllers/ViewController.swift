@@ -79,6 +79,7 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
     let cell = pokemonTableView.dequeueReusableCell(withIdentifier: "poke", for: indexPath) as! PokemonTableViewCell
     cell.configureLabel(pokemon: pokemon)
     if let detail = DataManager.shared.pokemonDetails[pokemon.name] {
+      
       cell.configureImage(detail: detail)
     } else {
       cell.img.image = UIImage(named: "placeholder")
@@ -87,25 +88,25 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      print("Seçilen Pokémon:", DataManager.shared.pokemons[indexPath.row].name)
-
-      // Yeni storyboard'u elle yükle
-      let detailStoryboard = UIStoryboard(name: "DetailScreen", bundle: nil)
-
-      // "detailScreen" kimliğine sahip View Controller'ı bu storyboard'dan çek
-      let detailScreenVC = detailStoryboard.instantiateViewController(
-          withIdentifier: "detailScreen"
-      ) as! DetailScreenViewController
-
-      // Verileri aktar
-      detailScreenVC.pokemon = DataManager.shared.pokemons[indexPath.row]
-      detailScreenVC.pokemonDetail = DataManager.shared.pokemonDetails[DataManager.shared.pokemons[indexPath.row].name]
-      detailScreenVC.title = DataManager.shared.pokemons[indexPath.row].name.capitalized
-
-      // Navigation Controller varsa push et
-      self.navigationController?.pushViewController(detailScreenVC, animated: true)
+    print("Seçilen Pokémon:", DataManager.shared.pokemons[indexPath.row].name)
+    
+    // Yeni storyboard'u elle yükle
+    let detailStoryboard = UIStoryboard(name: "DetailScreen", bundle: nil)
+    
+    // "detailScreen" kimliğine sahip View Controller'ı bu storyboard'dan çek
+    let detailScreenVC = detailStoryboard.instantiateViewController(
+      withIdentifier: "detailScreen"
+    ) as! DetailScreenViewController
+    
+    // Verileri aktar
+    detailScreenVC.pokemon = DataManager.shared.pokemons[indexPath.row]
+    detailScreenVC.pokemonDetail = DataManager.shared.pokemonDetails[DataManager.shared.pokemons[indexPath.row].name]
+    detailScreenVC.title = DataManager.shared.pokemons[indexPath.row].name.capitalized
+    
+    // Navigation Controller varsa push et
+    self.navigationController?.pushViewController(detailScreenVC, animated: true)
   }
-
+  
   
   //Created triggerIndex for understanding which cell displayed latest. If condition conforms then loadMorePokemon works.
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

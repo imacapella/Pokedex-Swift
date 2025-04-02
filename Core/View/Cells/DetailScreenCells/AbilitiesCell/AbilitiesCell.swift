@@ -6,11 +6,10 @@ import UIKit
 
 class AbilitiesCell: UITableViewCell {
   @IBOutlet weak var titleLabel: UILabel!
+  @IBOutlet weak var expandableStackView: UIStackView!
   @IBOutlet weak var abilitiesTableView: UITableView!
-  @IBOutlet weak var arrowImageView: UIImageView!
   
   static let identifier = "AbilitiesCell"
-  private var image: UIImage?
   private var abilities: [PokemonAbilities] = []
   
   static func nib() -> UINib {
@@ -28,6 +27,11 @@ class AbilitiesCell: UITableViewCell {
     abilities.removeAll()
   }
   
+  override func layoutSubviews() {
+      super.layoutSubviews()
+      print("TableView frame: \(abilitiesTableView.frame)")
+  }
+  
   private func setupTableView() {
     abilitiesTableView.delegate = self
     abilitiesTableView.dataSource = self
@@ -36,23 +40,16 @@ class AbilitiesCell: UITableViewCell {
   
   func configure(_ abilities: [PokemonAbilities], _ isExpanded: Bool) {
     self.abilities = abilities
+    print(expandableStackView.isHidden)
+    print(isExpanded)
+    expandableStackView.isHidden = !isExpanded
     abilitiesTableView.reloadData()
-    
-    if isExpanded {
-      image = UIImage(systemName: "arrow.up")
-      let totalHeight = CGFloat(abilities.count * 30) // Her hücre 30 birim yüksekliğinde
-      abilitiesTableView.heightAnchor.constraint(equalToConstant: totalHeight).isActive = true
-      arrowImageView.image = image
-    } else {
-      image = UIImage(systemName: "arrow.down")
-      arrowImageView.image = image
-    }
-    
     self.layoutIfNeeded()
+    self.contentView.layoutIfNeeded()
+    abilitiesTableView.layoutIfNeeded()
   }
 }
 
-//MARK: - TableView Extensions (numberOfRowsInSection, cellForRowAt, heightForRowAt)
 extension AbilitiesCell: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -61,7 +58,7 @@ extension AbilitiesCell: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "AbilityCell", for: indexPath)
-    cell.textLabel?.text = abilities[indexPath.row].ability.name.localizedCapitalized
+    cell.textLabel?.text = abilities[indexPath.row].ability.name.capitalized
     cell.selectionStyle = .none
     
     return cell
