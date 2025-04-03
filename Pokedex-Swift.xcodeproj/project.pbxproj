@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		610965632D9140B500C1FAFF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 610965622D9140B500C1FAFF /* Kingfisher */; };
+		6120F1D82D9E79B20089BA94 /* StatisticsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6120F1D72D9E79B20089BA94 /* StatisticsCollectionViewCell.xib */; };
+		6120F1D92D9E79B20089BA94 /* StatisticsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6120F1D62D9E79B20089BA94 /* StatisticsCollectionViewCell.swift */; };
+		6120F1DD2D9E7EE10089BA94 /* StatisticsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6120F1DC2D9E7EE10089BA94 /* StatisticsCell.xib */; };
+		6120F1DE2D9E7EE10089BA94 /* StatisticsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6120F1DB2D9E7EE10089BA94 /* StatisticsCell.swift */; };
 		6122F2D92D944C90007700FB /* AbilitiesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6122F2D72D944C90007700FB /* AbilitiesCell.swift */; };
 		6122F2DA2D944C90007700FB /* AbilitiesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6122F2D82D944C90007700FB /* AbilitiesCell.xib */; };
 		6122F2DD2D954408007700FB /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6122F2DC2D954408007700FB /* DataManager.swift */; };
@@ -33,6 +37,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6120F1D62D9E79B20089BA94 /* StatisticsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsCollectionViewCell.swift; sourceTree = "<group>"; };
+		6120F1D72D9E79B20089BA94 /* StatisticsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatisticsCollectionViewCell.xib; sourceTree = "<group>"; };
+		6120F1DB2D9E7EE10089BA94 /* StatisticsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsCell.swift; sourceTree = "<group>"; };
+		6120F1DC2D9E7EE10089BA94 /* StatisticsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatisticsCell.xib; sourceTree = "<group>"; };
 		6122F2D72D944C90007700FB /* AbilitiesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbilitiesCell.swift; sourceTree = "<group>"; };
 		6122F2D82D944C90007700FB /* AbilitiesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbilitiesCell.xib; sourceTree = "<group>"; };
 		6122F2DC2D954408007700FB /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
@@ -71,6 +79,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6120F1D52D9E79620089BA94 /* StatisticsCell */ = {
+			isa = PBXGroup;
+			children = (
+				6120F1DB2D9E7EE10089BA94 /* StatisticsCell.swift */,
+				6120F1DC2D9E7EE10089BA94 /* StatisticsCell.xib */,
+				6120F1DA2D9E7EC90089BA94 /* StatisticsCollectionViewCell */,
+			);
+			path = StatisticsCell;
+			sourceTree = "<group>";
+		};
+		6120F1DA2D9E7EC90089BA94 /* StatisticsCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				6120F1D62D9E79B20089BA94 /* StatisticsCollectionViewCell.swift */,
+				6120F1D72D9E79B20089BA94 /* StatisticsCollectionViewCell.xib */,
+			);
+			path = StatisticsCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		6122F2D62D944C70007700FB /* AbilitiesCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,8 +127,8 @@
 		6122F2E62D95C1FC007700FB /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				61CBB35A2D9887B0000CCE85 /* DetailScreenCells */,
 				61CBB35B2D9887BC000CCE85 /* MainScreenCells */,
+				61CBB35A2D9887B0000CCE85 /* DetailScreenCells */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -134,6 +161,7 @@
 		61CBB35A2D9887B0000CCE85 /* DetailScreenCells */ = {
 			isa = PBXGroup;
 			children = (
+				6120F1D52D9E79620089BA94 /* StatisticsCell */,
 				61CBB35C2D98882D000CCE85 /* SpritesCell */,
 				6122F2D62D944C70007700FB /* AbilitiesCell */,
 				61CF52602D944746005B54BE /* ImageDetailCell */,
@@ -304,6 +332,8 @@
 			files = (
 				61CF522D2D943512005B54BE /* Main.storyboard in Resources */,
 				6122F2E52D95C1B6007700FB /* DetailScreen.storyboard in Resources */,
+				6120F1DD2D9E7EE10089BA94 /* StatisticsCell.xib in Resources */,
+				6120F1D82D9E79B20089BA94 /* StatisticsCollectionViewCell.xib in Resources */,
 				61CF522C2D943512005B54BE /* LaunchScreen.storyboard in Resources */,
 				6122F2DA2D944C90007700FB /* AbilitiesCell.xib in Resources */,
 				615F23ED2D9ABA7100D0956B /* SpritesCell.xib in Resources */,
@@ -323,12 +353,14 @@
 				61CF52282D943512005B54BE /* ViewController.swift in Sources */,
 				6122F2DD2D954408007700FB /* DataManager.swift in Sources */,
 				61392DB52D9D2348009770D5 /* SpriteType.swift in Sources */,
+				6120F1D92D9E79B20089BA94 /* StatisticsCollectionViewCell.swift in Sources */,
 				61CF51FF2D93DDF6005B54BE /* AppDelegate.swift in Sources */,
 				61CF52002D93DDF6005B54BE /* SceneDelegate.swift in Sources */,
 				615F23EE2D9ABA7100D0956B /* SpritesCell.swift in Sources */,
 				61CF52272D943512005B54BE /* DetailScreenViewController.swift in Sources */,
 				61CF52242D943512005B54BE /* PokeModel.swift in Sources */,
 				61CF52262D943512005B54BE /* PokemonListCell.swift in Sources */,
+				6120F1DE2D9E7EE10089BA94 /* StatisticsCell.swift in Sources */,
 				61CF52612D944746005B54BE /* ImageDetailCell.swift in Sources */,
 				61FFCC622D9D262E001CDA38 /* SpritesCollectionViewCell.swift in Sources */,
 				6122F2E22D95844B007700FB /* CellStates.swift in Sources */,

@@ -11,8 +11,8 @@ import Kingfisher
 class SpritesCollectionViewCell: UICollectionViewCell {
   
   static let identifier = "SpritesCollectionViewCell"
-  
   @IBOutlet weak var spriteImageView: UIImageView!
+  @IBOutlet weak var spriteTypeLabel: UILabel!
   
   static func nib() -> UINib {
     return UINib(nibName: identifier, bundle: nil)
@@ -22,19 +22,15 @@ class SpritesCollectionViewCell: UICollectionViewCell {
     super.awakeFromNib()
   }
   
-  func configure() {
-    spriteImageView.kf.setImage(with: URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/3.png"))
+  func configure(_ detail: PokemonDetail,_ spriteType: SpriteType,_ spriteTypeText: String?) {
+    print(DataManager.shared.spriteURLs[detail.name]?[spriteType.rawValue])
+    if let url = DataManager.shared.spriteURLs[detail.name]?[spriteType.rawValue] {
+      print("url çalıştı")
+      spriteImageView.kf.setImage(with: url)
+      spriteTypeLabel.text = spriteTypeText?.capitalized ?? "nil"
+    }
   }
 }
 
 
 
-
-/*spriteImageView.kf.setImage(
-  with: url,
-  placeholder: UIImage(systemName: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/3.png"),
-  options: [
-    .transition(.fade(0.3)),
-    .cacheOriginalImage
-  ]
-)*/

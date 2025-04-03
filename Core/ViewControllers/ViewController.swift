@@ -30,6 +30,9 @@ class ViewController: UIViewController {
         for pokemon in fetchedPokemons {
           let detail = try await pokemonAPI.fetchPokemonDetails(url: pokemon.url)
           DataManager.shared.pokemonDetails[pokemon.name] = detail
+          //print(detail.stats)
+          let seperatedSpriteURLs = seperateURLsFromSprites(detail)
+          DataManager.shared.spriteURLs[pokemon.name] = seperatedSpriteURLs
         }
         DispatchQueue.main.async {                                    // Reload Table View
           self.pokemonTableView.reloadData()                          // Reload Table View
@@ -52,6 +55,8 @@ class ViewController: UIViewController {
         for pokemon in newPokemons {                                                    // Get New Details
           let detail = try await pokemonAPI.fetchPokemonDetails(url: pokemon.url)   // Get New Details
           DataManager.shared.pokemonDetails[pokemon.name] = detail                      // Get New Details
+          let newSeperatedSpriteURLs = seperateURLsFromSprites(detail)
+          DataManager.shared.spriteURLs[pokemon.name] = newSeperatedSpriteURLs
         }
         
         DispatchQueue.main.async {
@@ -63,6 +68,40 @@ class ViewController: UIViewController {
         print("Error:", error)
       }
     }
+  }
+  
+  func seperateURLsFromSprites(_ pokemonDetail: PokemonDetail) -> [String : URL] {
+    let spriteType = pokemonDetail.sprites
+    var spritesDictionary: [String: URL] = [:]
+    
+    if let frontDefault = URL(string: spriteType.frontDefault) {
+      spritesDictionary["frontDefault"] = frontDefault
+    }
+    
+    if let backDefault = URL(string: spriteType.backDefault) {
+      spritesDictionary["backDefault"] = backDefault
+    }
+    
+    if let frontShiny = URL(string: spriteType.frontShiny) {
+      spritesDictionary["frontShiny"] = frontShiny
+    }
+    
+    if let backShiny = URL(string: spriteType.backShiny) {
+      spritesDictionary["backShiny"] = backShiny
+    }
+    
+    if let frontFemale = URL(string: spriteType.frontFemale ?? "a") {
+      spritesDictionary["frontFemale"] = frontFemale
+    }
+    
+    if let backFemale = URL(string: spriteType.backFemale ?? "a") {
+      spritesDictionary["backFemale"] = backFemale
+    }
+    
+    if let backShinyFemale = URL(string: spriteType.backShinyFemale ?? "a") {
+      spritesDictionary["backShinyFemale"] = backShinyFemale
+    }
+    return spritesDictionary
   }
 }
 

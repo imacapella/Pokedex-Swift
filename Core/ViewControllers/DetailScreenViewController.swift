@@ -12,16 +12,18 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
   
   var pokemon: Pokemon?
   var pokemonDetail: PokemonDetail?
-  var spritesURL: [URL?] = []
   
   private let imageCellNib = ImageDetailCell.nib()
   private let abilitiesCellNib = AbilitiesCell.nib()
   private let spritesCellNib = SpritesCell.nib()
+  private let statisticsCellNib = StatisticsCell.nib()
   
   private var cellType = CellTypes.allCases
   private var expandableCellState = ExpandableCellState.allCases
+  
   private var isAbilitiesCellExpanded: Bool = false
   private var isSpritesCellExpanded: Bool = false
+  private var isStatisticsCellExpanded: Bool = false
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -30,6 +32,7 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
     pokemonDetailTableView.register(imageCellNib, forCellReuseIdentifier: ImageDetailCell.identifier)
     pokemonDetailTableView.register(abilitiesCellNib, forCellReuseIdentifier: AbilitiesCell.identifier)
     pokemonDetailTableView.register(spritesCellNib, forCellReuseIdentifier: SpritesCell.identifier)
+    pokemonDetailTableView.register(statisticsCellNib, forCellReuseIdentifier: StatisticsCell.identifier)
     pokemonDetailTableView.estimatedRowHeight = 100
     pokemonDetailTableView.rowHeight = UITableView.automaticDimension
   }
@@ -49,16 +52,23 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
     switch type {
     case .imageCell:
       let cell = tableView.dequeueReusableCell(withIdentifier: ImageDetailCell.identifier, for: indexPath) as! ImageDetailCell
-      cell.configureImageDetail(detail: pokemonDetail)
+      cell.configure(detail: pokemonDetail)
       
       return cell
     case .abilitiesCell:
       let cell = tableView.dequeueReusableCell(withIdentifier: AbilitiesCell.identifier, for: indexPath) as! AbilitiesCell
-      cell.configure(pokemonDetail.abilities, isAbilitiesCellExpanded)
+      cell.configure(with: pokemonDetail.abilities, isAbilitiesCellExpanded)
       
       return cell
     case .spritesCell:
       let cell = tableView.dequeueReusableCell(withIdentifier: SpritesCell.identifier, for: indexPath) as! SpritesCell
+      cell.configure(with: pokemonDetail, isSpritesCellExpanded)
+      
+      return cell
+      
+    case .statisticsCell:
+      let cell = tableView.dequeueReusableCell(withIdentifier: StatisticsCell.identifier, for: indexPath) as! StatisticsCell
+      cell.configure(with: pokemonDetail, isStatisticsCellExpanded)
       return cell
     }
   }
@@ -66,13 +76,19 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let type = cellType[indexPath.section]
     
-    if type == .abilitiesCell {
+    switch type {
+    case .imageCell:
+      tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
+      
+    case .abilitiesCell:
       isAbilitiesCellExpanded.toggle()
       tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
-    }
     
-    if type == .spritesCell {
+    case .spritesCell:
       isSpritesCellExpanded.toggle()
+      tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
+    case .statisticsCell:
+      isStatisticsCellExpanded.toggle()
       tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
     }
   }
@@ -81,6 +97,9 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
     let type = cellType[indexPath.section]
     
     switch type {
+    case .imageCell:
+      return 300
+      
     case .abilitiesCell:
       if isAbilitiesCellExpanded == true {
         let abilityCount = pokemonDetail?.abilities.count ?? 0
@@ -89,13 +108,10 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
       } else { return 70 }
       
     case .spritesCell:
-      if isSpritesCellExpanded == true {
-        
-        return 200
-      } else { return 70 }
+      if isSpritesCellExpanded == true { return 200 } else { return 70 }
       
-    case .imageCell:
-      return 300
+    case .statisticsCell:
+      if isStatisticsCellExpanded == true { return 200 } else { return 70 }
     }
   }
 }

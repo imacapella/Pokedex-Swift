@@ -22,6 +22,7 @@ struct PokemonDetail: Codable {
   let name: String
   let sprites: Sprites
   let abilities: [PokemonAbilities]
+  //let stats: [PokemonStats]
 }
 
 // MARK: Pokemon Images
@@ -37,12 +38,12 @@ struct Sprites: Codable, Hashable {
   
   enum CodingKeys: String, CodingKey {
     case frontDefault = "front_default"
-    case backDefault = "back_default"
-    case backFemale = "back_female"
-    case backShiny = "back_shiny"
-    case backShinyFemale = "back_shiny_female"
-    case frontFemale = "front_female"
     case frontShiny = "front_shiny"
+    case frontFemale = "front_female"
+    case backDefault = "back_default"
+    case backShiny = "back_shiny"
+    case backFemale = "back_female"
+    case backShinyFemale = "back_shiny_female"
   }
   init(frontDefault: String, backDefault: String, backFemale: String?, backShiny: String, backShinyFemale: String?, frontFemale: String?, frontShiny: String) {
     self.frontDefault = frontDefault
@@ -60,7 +61,18 @@ struct PokemonAbilities: Codable {
   let ability: Abilities
 }
 // like this
-struct Abilities: Codable{
+struct Abilities: Codable {
+  let name: String
+  let url: String
+}
+
+struct PokemonStats: Codable {
+  let baseStat: Int
+  let effort: Int
+  let stats: Stats
+}
+
+struct Stats: Codable {
   let name: String
   let url: String
 }

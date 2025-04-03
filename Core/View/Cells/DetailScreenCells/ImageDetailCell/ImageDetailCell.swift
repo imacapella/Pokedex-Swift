@@ -18,7 +18,7 @@ class ImageDetailCell: UITableViewCell {
     return UINib(nibName: "ImageDetailCell", bundle: nil)
   }
   
-  func configureImageDetail(detail: PokemonDetail) {
+  func configure(detail: PokemonDetail) {
     self.imageDetail.kf.setImage(with: URL(string: detail.sprites.frontDefault)!)
     self.imageDetail.frame.size.width = 400
     self.imageDetail.frame.size.height = 400

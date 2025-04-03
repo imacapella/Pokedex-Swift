@@ -8,6 +8,7 @@ class AbilitiesCell: UITableViewCell {
   @IBOutlet weak var titleLabel: UILabel!
   @IBOutlet weak var expandableStackView: UIStackView!
   @IBOutlet weak var abilitiesTableView: UITableView!
+  @IBOutlet weak var expandIcon: UIImageView!
   
   static let identifier = "AbilitiesCell"
   private var abilities: [PokemonAbilities] = []
@@ -38,15 +39,12 @@ class AbilitiesCell: UITableViewCell {
     abilitiesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "AbilityCell")
   }
   
-  func configure(_ abilities: [PokemonAbilities], _ isExpanded: Bool) {
+  func configure(with abilities: [PokemonAbilities], _ isExpanded: Bool) {
     self.abilities = abilities
-    print(expandableStackView.isHidden)
-    print(isExpanded)
     expandableStackView.isHidden = !isExpanded
     abilitiesTableView.reloadData()
-    self.layoutIfNeeded()
-    self.contentView.layoutIfNeeded()
     abilitiesTableView.layoutIfNeeded()
+    expandIcon.image = isExpanded ? UIImage(systemName: "chevron.up") : UIImage(systemName: "chevron.down")
   }
 }
 

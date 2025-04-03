@@ -9,6 +9,7 @@ enum CellTypes: CaseIterable {
   case imageCell
   case abilitiesCell
   case spritesCell
+  case statisticsCell
 }
 
 enum ExpandableCellState: CaseIterable {

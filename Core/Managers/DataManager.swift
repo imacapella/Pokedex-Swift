@@ -11,4 +11,5 @@ final class DataManager {
   
   var pokemons : [Pokemon] = []
   var pokemonDetails: [String : PokemonDetail] = [:]
+  var spriteURLs:[String : [String : URL?]]  = [:]
 }
