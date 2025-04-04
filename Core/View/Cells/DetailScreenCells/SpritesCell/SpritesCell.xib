@@ -24,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="rng-ko-G73">
-                        <rect key="frame" x="0.0" y="83" width="522" height="157"/>
+                        <rect key="frame" x="10" y="83" width="512" height="157"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7pG-Bd-1GW">
                             <size key="itemSize" width="128" height="128"/>
@@ -46,7 +46,7 @@
                     <constraint firstAttribute="trailing" secondItem="rng-ko-G73" secondAttribute="trailing" id="WEh-Gm-p77"/>
                     <constraint firstItem="gIY-q1-8bd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="mmb-B3-oV7"/>
                     <constraint firstItem="rng-ko-G73" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="83" id="n5C-1J-4eJ"/>
-                    <constraint firstItem="rng-ko-G73" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="nyR-Re-jGF"/>
+                    <constraint firstItem="rng-ko-G73" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="nyR-Re-jGF"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

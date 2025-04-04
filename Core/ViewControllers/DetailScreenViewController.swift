@@ -108,7 +108,7 @@ final class DetailScreenViewController: UIViewController, UITableViewDelegate, U
       } else { return 70 }
       
     case .spritesCell:
-      if isSpritesCellExpanded == true { return 200 } else { return 70 }
+      if isSpritesCellExpanded == true { return 220 } else { return 70 }
       
     case .statisticsCell:
       if isStatisticsCellExpanded == true { return 200 } else { return 70 }

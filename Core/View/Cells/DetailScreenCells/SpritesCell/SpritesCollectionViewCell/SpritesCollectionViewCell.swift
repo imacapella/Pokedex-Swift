@@ -13,6 +13,7 @@ class SpritesCollectionViewCell: UICollectionViewCell {
   static let identifier = "SpritesCollectionViewCell"
   @IBOutlet weak var spriteImageView: UIImageView!
   @IBOutlet weak var spriteTypeLabel: UILabel!
+  @IBOutlet weak var spriteBackgroundHolderView: UIView!
   
   static func nib() -> UINib {
     return UINib(nibName: identifier, bundle: nil)
@@ -20,6 +21,12 @@ class SpritesCollectionViewCell: UICollectionViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
+    self.spriteBackgroundHolderView.layer.cornerRadius = 20
+    self.spriteBackgroundHolderView.clipsToBounds = true
+    let blurEffect = UIBlurEffect(style: .dark)
+    let blurEffectView = UIVisualEffectView(effect: blurEffect)
+    blurEffectView.frame = spriteBackgroundHolderView.bounds
+    blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
   }
   
   func configure(_ detail: PokemonDetail,_ spriteType: SpriteType,_ spriteTypeText: String?) {

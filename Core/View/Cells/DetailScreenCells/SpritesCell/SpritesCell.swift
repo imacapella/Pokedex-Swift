@@ -21,6 +21,7 @@ class SpritesCell: UITableViewCell {
     .backFemale: "Back Female",
     .backShinyFemale: "Back Shiny Female",
   ]
+  
 
   static let identifier = "SpritesCell"
   static func nib() -> UINib {
@@ -52,13 +53,15 @@ class SpritesCell: UITableViewCell {
 extension SpritesCell: UICollectionViewDelegate, UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return SpriteType.allCases.count
+    guard let detail = self.detail else { return 0 }
+    return SpriteType.allCases.filter { $0.isAvailable(in: detail) }.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SpritesCollectionViewCell.identifier, for: indexPath) as! SpritesCollectionViewCell
     if let detail = self.detail {
-      let spriteType = SpriteType.allCases[indexPath.item]
+      let availableSprites = SpriteType.allCases.filter { $0.isAvailable(in: detail) }
+      let spriteType = availableSprites[indexPath.item]
       cell.configure(detail, spriteType, spriteTypeDictionary[spriteType])
     } else {
       print("detail is nil in SpritesCell")

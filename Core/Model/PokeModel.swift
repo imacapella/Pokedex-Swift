@@ -27,13 +27,13 @@ struct PokemonDetail: Codable {
 
 // MARK: Pokemon Images
 struct Sprites: Codable, Hashable {
-  let frontDefault: String
-  let backDefault: String
+  let frontDefault: String?
+  let backDefault: String?
   let backFemale: String?
-  let backShiny: String
+  let backShiny: String?
   let backShinyFemale: String?
   let frontFemale: String?
-  let frontShiny: String
+  let frontShiny: String?
   //let other: OtherSprites?
   
   enum CodingKeys: String, CodingKey {
@@ -44,15 +44,6 @@ struct Sprites: Codable, Hashable {
     case backShiny = "back_shiny"
     case backFemale = "back_female"
     case backShinyFemale = "back_shiny_female"
-  }
-  init(frontDefault: String, backDefault: String, backFemale: String?, backShiny: String, backShinyFemale: String?, frontFemale: String?, frontShiny: String) {
-    self.frontDefault = frontDefault
-    self.backDefault = backDefault
-    self.backFemale = backFemale
-    self.backShiny = backShiny
-    self.backShinyFemale = backShinyFemale
-    self.frontFemale = frontFemale
-    self.frontShiny = frontShiny
   }
 }
 

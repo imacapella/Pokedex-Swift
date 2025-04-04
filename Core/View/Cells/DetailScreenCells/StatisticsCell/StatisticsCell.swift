@@ -26,10 +26,12 @@ class StatisticsCell: UITableViewCell {
     statisticsCollectionView.delegate = self
     statisticsCollectionView.dataSource = self
     statisticsCollectionView.register(StatisticsCollectionViewCell.nib(), forCellWithReuseIdentifier: StatisticsCollectionViewCell.identifier)
+    
     let layout = UICollectionViewFlowLayout()
-    layout.itemSize = CGSize(width: 300, height: 100) // XIB'deki boyutlarla uyumlu olmalı
-    layout.minimumLineSpacing = 10
-    layout.minimumInteritemSpacing = 10
+    layout.itemSize = CGSize(width: UIScreen.main.bounds.width - 32, height: 24)
+    layout.minimumLineSpacing = 8
+    layout.minimumInteritemSpacing = 0
+    layout.sectionInset = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
     statisticsCollectionView.collectionViewLayout = layout
   }
   

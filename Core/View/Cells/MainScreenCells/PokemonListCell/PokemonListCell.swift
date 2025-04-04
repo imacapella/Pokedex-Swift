@@ -18,6 +18,6 @@ class PokemonTableViewCell: UITableViewCell {
     }
   
     func configureImage(detail: PokemonDetail) {
-        self.img.kf.setImage(with: URL(string: detail.sprites.frontDefault)!)
+      self.img.kf.setImage(with: URL(string: detail.sprites.frontDefault ?? "PokemonTableViewCell görsel gelmedi BOM!"))
     }
 }

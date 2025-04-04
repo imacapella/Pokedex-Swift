@@ -74,33 +74,21 @@ class ViewController: UIViewController {
     let spriteType = pokemonDetail.sprites
     var spritesDictionary: [String: URL] = [:]
     
-    if let frontDefault = URL(string: spriteType.frontDefault) {
-      spritesDictionary["frontDefault"] = frontDefault
+    let spriteMappings: [(key: String, value: String?)] = [
+      ("frontDefault", spriteType.frontDefault),
+      ("backDefault", spriteType.backDefault),
+      ("frontShiny", spriteType.frontShiny),
+      ("backShiny", spriteType.backShiny),
+      ("frontFemale", spriteType.frontFemale),
+      ("backFemale", spriteType.backFemale),
+      ("backShinyFemale", spriteType.backShinyFemale)
+    ]
+    for mapping in spriteMappings {
+      if let urlString = mapping.value, let url = URL(string: urlString) {
+        spritesDictionary[mapping.key] = url
+      }
     }
     
-    if let backDefault = URL(string: spriteType.backDefault) {
-      spritesDictionary["backDefault"] = backDefault
-    }
-    
-    if let frontShiny = URL(string: spriteType.frontShiny) {
-      spritesDictionary["frontShiny"] = frontShiny
-    }
-    
-    if let backShiny = URL(string: spriteType.backShiny) {
-      spritesDictionary["backShiny"] = backShiny
-    }
-    
-    if let frontFemale = URL(string: spriteType.frontFemale ?? "a") {
-      spritesDictionary["frontFemale"] = frontFemale
-    }
-    
-    if let backFemale = URL(string: spriteType.backFemale ?? "a") {
-      spritesDictionary["backFemale"] = backFemale
-    }
-    
-    if let backShinyFemale = URL(string: spriteType.backShinyFemale ?? "a") {
-      spritesDictionary["backShinyFemale"] = backShinyFemale
-    }
     return spritesDictionary
   }
 }

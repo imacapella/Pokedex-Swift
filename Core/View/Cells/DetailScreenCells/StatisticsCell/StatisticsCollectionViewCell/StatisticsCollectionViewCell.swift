@@ -22,9 +22,6 @@ class StatisticsCollectionViewCell: UICollectionViewCell {
   
   override func awakeFromNib() {
     super.awakeFromNib()
-    print("CapsuleView frame: \(capsuleView.frame)")
-    print("HalfCapsuleView frame: \(halfCapsuleView.frame)")
-    print("StatIconImageView frame: \(statIconImageView.frame)")
   }
   
 }
